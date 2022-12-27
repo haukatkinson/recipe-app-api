@@ -1,1 +1,1 @@
-# recipe-app-api
+Reload terminal `source ~/.bashrc`
