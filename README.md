@@ -1,1 +1,1 @@
-Reload terminal `source ~/.bashrc`
+Reload terminal `source ~/.zshrc`
