@@ -9,3 +9,6 @@ The docker build command builds Docker images from a Dockerfile and a “context
 
 `docker-compose run --rm app sh -c "flake8"` 
 Runs flake8
+
+`docker-compose run --rm app sh -c "django-admin startproject app ."`
+Creats Django project in workspace
