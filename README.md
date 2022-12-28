@@ -17,3 +17,6 @@ Creats Django project in workspace
 runs docker services
 
 Browser src = http://127.0.0.1:8000/
+
+`docker-compose run --rm app sh -c "python manage.py test"`
+runs Django test
