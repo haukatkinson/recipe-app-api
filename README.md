@@ -15,3 +15,5 @@ Creats Django project in workspace
 
 `docker-compose up`
 runs docker services
+
+Browser src = http://127.0.0.1:8000/
