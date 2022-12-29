@@ -30,3 +30,8 @@ Django command for starting a new app
 
 `docker-compose down` to turn off db then ` docker volume rm recipe-app-api_dev-db-data
 recipe-app-api_dev-db-data` to remove user from docker then `docker volume ls` to check is user has been removed
+
+`code .zshrc`
+`alias docker-python-test='docker-compose run --rm app sh -c "python manage.py test"'`
+`alias reload="source ~/.zshrc"`
+to add custom commands for terminal
