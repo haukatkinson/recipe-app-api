@@ -27,3 +27,6 @@ Django command for starting a new app
 `docker-compose run --rm app sh -c "python manage.py
  wait_for_db && python manage.py migrate"`
  run backend
+
+`docker-compose down` to turn off db then ` docker volume rm recipe-app-api_dev-db-data
+recipe-app-api_dev-db-data` to remove user from docker then `docker volume ls` to check is user has been removed
