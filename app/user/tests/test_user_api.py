@@ -21,7 +21,7 @@ class PublicApiTest(TestCase):
     def setUp(self):
         self.client = APIClient()
 
-        def test_create_user_success(self):
+    def test_create_user_success(self):
             """Test creating a user is successful."""
             payload = {
                 'email': 'test@example.com',
@@ -66,8 +66,8 @@ class PublicApiTest(TestCase):
         """Test generates token for valid credentials."""
         user_details = {
             'name': 'Test Name',
-            'email': 'test@example.com',
-            'password': 'test-user-password123'
+            'email': 'test2@example.com',
+            'password': 'test-user-password123',
         }
         create_user(**user_details)
 
