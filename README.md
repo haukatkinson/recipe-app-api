@@ -37,3 +37,5 @@ recipe-app-api_dev-db-data` to remove user from docker then `docker volume ls` t
 to add custom commands for terminal
 
 http://127.0.0.1:8000/api/docs/ link to endpoints
+
+`docker-compose run --rm app sh -c "python manage.py makemigrations"` Runs migrations
