@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
-        """Updateand reuturn user."""
+        """Updateand return user."""
         password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
 
@@ -41,7 +41,7 @@ class AuthTokenSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
-        """Validatw and authenticate the user."""
+        """Validate and authenticate the user."""
         email = attrs.get('email')
         password = attrs.get('password')
         user = authenticate(
