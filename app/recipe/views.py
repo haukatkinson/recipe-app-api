@@ -25,7 +25,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             return serializers.RecipeSerializer
 
-        return self.serializers_class
+        return self.serializer_class
 
 
     def perform_create(self, serializer):

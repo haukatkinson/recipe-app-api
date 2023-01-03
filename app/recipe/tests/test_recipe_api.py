@@ -70,7 +70,7 @@ class PrivateRecipeApiTests(TestCase):
 
         res =self.client.get(RECIPES_URL)
 
-        recipes = Recipe.objects.all().order_by('_id')
+        recipes = Recipe.objects.all().order_by('-id')
         serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
@@ -138,7 +138,7 @@ class PrivateRecipeApiTests(TestCase):
         recipe = create_recipe(
             user=self.user,
             title='Sample recipe title',
-            link='https://example@.com/new-recipe.pdf',
+            link='https://example@.com/recipe.pdf',
             description='Sample recipe description',
         )
 
@@ -163,8 +163,8 @@ class PrivateRecipeApiTests(TestCase):
         new_user = create_user(email='user2@example.com', password='test123')
         recipe = create_recipe(user=self.user)
 
-        payload={'user': new_user.id}
-        url= detail_url(recipe.id)
+        payload = {'user': new_user.id}
+        url = detail_url(recipe.id)
         self.client.patch(url, payload)
 
         recipe.refresh_from_db()
@@ -188,4 +188,4 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.delete(url)
 
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
-        self.assertTrue(Recipe.objects.filter(id+recipe.id).exists())
+        self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
