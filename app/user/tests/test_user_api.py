@@ -23,25 +23,25 @@ class PublicUserApiTest(TestCase):
         self.client = APIClient()
 
     def test_create_user_success(self):
-            """Test creating a user is successful."""
-            payload = {
-                'email': 'test@example.com',
-                'password': 'testpass123',
-                'name': 'Test Name',
-            }
-            res = self.client.post(CREATE_USER_URL, payload)
+        """Test creating a user is successful."""
+        payload = {
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test Name',
+        }
+        res = self.client.post(CREATE_USER_URL, payload)
 
-            self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-            user = get_user_model().objects.get(email=payload['email'])
-            self.assertTrue(user.check_password(payload['password']))
-            self.assertNotIn('password', res.data)
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        user = get_user_model().objects.get(email=payload['email'])
+        self.assertTrue(user.check_password(payload['password']))
+        self.assertNotIn('password', res.data)
 
     def test_user_with_email_exists_error(self):
         """Test error returned if user with email exists."""
         payload = {
-                'email': 'test@example.com',
-                'password': 'testpass123',
-                'name': 'Test Name',
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test Name',
         }
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
@@ -51,9 +51,9 @@ class PublicUserApiTest(TestCase):
     def test_password_too_short_error(self):
         """Test an error is returned if password is less than 5 chards."""
         payload = {
-                'email': 'test@example.com',
-                'password': 'pw',
-                'name': 'Test Name',
+            'email': 'test@example.com',
+            'password': 'pw',
+            'name': 'Test Name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
