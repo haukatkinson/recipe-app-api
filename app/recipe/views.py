@@ -34,10 +34,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
         return self.serializer_class
 
-
     def perform_create(self, serializer):
         """Create a new reipe."""
         serializer.save(user=self.request.user)
+
 
 class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
                             mixins.UpdateModelMixin,
@@ -47,7 +47,7 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get_querryset(self):
+    def get_queryset(self):
         """Filter queryset to authenticated user."""
         return self.queryset.filter(user=self.request.user).order_by('-name')
 

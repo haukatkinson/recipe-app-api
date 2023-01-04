@@ -181,7 +181,7 @@ class PrivateRecipeApiTests(TestCase):
         url = detail_url(recipe.id)
         res = self.client.delete(url)
 
-        self.assertEqual(res.statsus_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_recipe_other_users_recipe_error(self):
         """Test trying to delete another users recipe gives error."""
@@ -194,7 +194,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
 
-    def test_creating_recipe_with_new_tags(self):
+    def test_create_recipe_with_new_tags(self):
         """Test creating a recipe with new tags."""
         payload = {
             'title': 'Thai Prawn Curry',
@@ -250,7 +250,7 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.patch(url, payload, formay='json')
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        new_tag = Tag.Objects.get(user=self.user, name='Lunch')
+        new_tag = Tag.objects.get(user=self.user, name='Lunch')
         self.assertIn(new_tag, recipe.tags.all())
 
 
@@ -288,7 +288,7 @@ class PrivateRecipeApiTests(TestCase):
             'title': 'Cauliflower Tacos',
             'time_minutes': 60,
             'price': Decimal('4.30'),
-            'ingredients' :[{'name': 'Cauliflower'}, {'name': 'Salt'}],
+            'ingredients': [{'name': 'Cauliflower'}, {'name': 'Salt'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -311,7 +311,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'title': 'Vietnamese Soup',
             'time_minutes': 25,
-            'price': Decimal('3.50'),
+            'price': '3.50',
             'ingredients': [{'name': 'Lemon'}, {'name': 'Fish Sauce'}],
         }
         res = self.client.post(RECIPES_URL,payload, format='json')

@@ -25,8 +25,8 @@ def create_user(email='user@example.com', password='testpass123'):
     return get_user_model().objects.create_user(email=email, password=password)
 
 
-class PublicTestApiTests(TestCase):
-    """Test unauthenticated Api requests."""
+class PublicTagsApiTests(TestCase):
+    """Test unauthenticated API requests."""
 
     def setUp(self):
         self.client = APIClient()
@@ -58,7 +58,7 @@ class PrivateTagsApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-    def test_tags_linited_to_user(self):
+    def test_tags_limited_to_user(self):
         """Test list of tags is limited to authenticated user."""
         user2 = create_user(email='user2@example.com')
         Tag.objects.create(user=user2, name='Fruity')
@@ -78,7 +78,7 @@ class PrivateTagsApiTests(TestCase):
 
         payload = {'name': 'Dessert'}
         url = detail_url(tag.id)
-        res = self.client.patch(url , payload)
+        res = self.client.patch(url, payload)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         tag.refresh_from_db()
