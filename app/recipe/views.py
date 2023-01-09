@@ -35,8 +35,8 @@ from recipe import serializers
             OpenApiParameter(
                 'ingredients',
                 OpenApiTypes.STR,
-                description='Comma seperated list of ingredients IDs to filter'
-            )
+                description='Comma separated list of ingredients IDs to filter',
+            ),
         ]
     )
 )
@@ -100,7 +100,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 'assigned_only',
                 OpenApiTypes.INT, enum=[0, 1],
                 description='Filter by items assigned to recipes',
-            )
+            ),
         ]
     )
 )
@@ -119,11 +119,11 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
         assigned_only = bool(
             int(self.request.query_params.get('assigned_only', 0))
         )
-        queryset = self.get_queryset
+        queryset = self.queryset
         if assigned_only:
             queryset = queryset.filter(recipe__isnull=False)
 
-        return self.queryset.filter(
+        return queryset.filter(
             user=self.request.user
             ).order_by('-name').dicstinct()
 
