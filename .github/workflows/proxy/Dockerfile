@@ -1,8 +1,8 @@
-FROM nginxinc/nginxinc/nginx-unprivileged:1-alpine3
+FROM nginxinc/nginx-unprivileged:1-alpine3
 LABEL maintainer="londonappdeveloper.com"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
-COPY ./uswgi_params /etc/nginx/uswgi_params
+COPY ./uwsgi_params /etc/nginx/uwsgi_params
 COPY ./run.sh /run.sh
 
 ENV LISTEN_PORT=8000
